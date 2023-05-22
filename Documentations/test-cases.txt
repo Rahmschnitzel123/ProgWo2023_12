@@ -1,0 +1,7 @@
+Man kann auf der Map auf eine Gemeinde klicken und dann  werden die entsprechenden Diagramme aktualisiert.
+
+Man kann eine Gemeinde wählen (Dropdown) und dann wird das Diagramm aktualisiert.
+
+Mann kann eine oder zwei Parteien auswählen (Dropdown) und das liniendiagramm wird aktualisiert
+
+Man kann ein Jahr auswählen und die Parteianteile werden vom gesamten Thurgau dargestellt
