@@ -1,3 +1,5 @@
+Man kann das Jahr global auswählen und die Daten werden angepasst
+
 Man kann auf der Map auf eine Gemeinde klicken und dann  werden die entsprechenden Diagramme aktualisiert.
 
 Man kann eine Gemeinde wählen (Dropdown) und dann wird das Diagramm aktualisiert.
