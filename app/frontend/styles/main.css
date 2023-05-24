@@ -1,6 +1,9 @@
 #municipalities path{
     fill: darkgreen;
     stroke: rgb(204, 204, 0)}
+#municipalities path:hover{
+    fill: rgb(17, 173, 14);
+}
 #lakes path{
     fill: rgb(51, 102, 255);
     stroke: darkblue;

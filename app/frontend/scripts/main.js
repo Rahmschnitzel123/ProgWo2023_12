@@ -3,6 +3,18 @@ const elMapTg = document.getElementById('tg-map');
 SVGInject(elMapTg);
 
 makeCharts()
+
+// create the map
+var map = L.map('map', {
+    center: [40.75, -74.2],
+    zoom: 13
+});
+
+var imageUrl = '../res/map-tg.svg',
+    imageBounds = getBBox();
+L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+
 function makeCharts() {
     line()
     bar()
@@ -31,7 +43,7 @@ function line() {
 
 function bar() {
     let label1 = 'joe'
-    let label2 = 'who'
+    let label2 = 'mama'
     let chartobj = document.getElementById('barChart')
     let lineChart = new Chart(chartobj, {
         type: 'bar',
