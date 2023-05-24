@@ -22,7 +22,7 @@ function processMapData(data){
     console.log(processedData)
 
 
-
+return(processedData)
 }
 
 // DATA_FORMAT
