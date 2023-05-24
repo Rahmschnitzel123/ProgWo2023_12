@@ -1,12 +1,11 @@
 const axios = require('axios')
 
-axios.get("https://data.tg.ch/api/v2/catalog/datasets/sk-stat-10/exports/json").then(res => processData(res))
+axios.get("https://data.tg.ch/api/v2/catalog/datasets/sk-stat-10/exports/json").then(res => processYearData(res))
 
-function processData(data, newParam = []) {
+function processYearData(data, newParam = []) {
 
     let parties = ['svp', 'fdp', 'cvp', 'sp', 'gp', 'glp', 'evp', 'edu', 'bdp', 'uebrige']
 
-    //let processedData = {year: undefined, parties:parties.map(p => {let smth = {}; smth[p] = undefined; return(smth)})}
     let processedData = []
     let total = 0
     data = data.data
@@ -28,3 +27,22 @@ function processData(data, newParam = []) {
 console.log(processedData)
 return processedData
 }
+
+//DATA_FORMAT:
+/*
+{{
+    [
+        {
+            year:
+            parties:
+    [
+        {partyName: , votes:}
+        {partyName: , votes:}
+        {partyName: , votes:}
+        {partyName: , votes:}
+        {partyName: , votes:}
+    ]
+},
+]
+}
+*/

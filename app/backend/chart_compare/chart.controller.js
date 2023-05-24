@@ -1,8 +1,8 @@
-import { functionFromModel } from './pathToModel';
+import { processCompareData } from './chart.model.js';
 
-async function functionInModel(request, response) {
+async function processCompareData(request, response) {
     const datasets = await functionFromModel();
     response.json(datasets);
 
-    export { functionInModel };
+    export { processCompareData };
 }
