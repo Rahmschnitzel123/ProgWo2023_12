@@ -25,7 +25,7 @@ function processCountyData(data) {
 
     }
 }
-    console.log(JSON.stringify(processedData))
+    //console.log(JSON.stringify(processedData))
     return processedData
 }
 

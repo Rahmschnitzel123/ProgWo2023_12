@@ -22,9 +22,10 @@ function processCompareData(data) {
         }
         votesAllYears.push({year: year, parties: partiesYear});
     }
-    console.log(JSON.stringify(votesAllYears))
+processedData = votesAllYears
+    //console.log(JSON.stringify(processedData))
+    //console.log(processedData)
 
-    console.log(processedData)
     return processedData
 }
 

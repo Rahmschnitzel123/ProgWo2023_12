@@ -24,7 +24,8 @@ function processYearData(data, newParam = []) {
     }
     console.log(JSON.stringify(votesAllYears))
 
-console.log(processedData)
+    processedData = votesAllYears
+    //console.log(processedData)
 return processedData
 }
 

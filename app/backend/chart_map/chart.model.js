@@ -19,7 +19,7 @@ function processMapData(data){
         bfs = undefined
 
     }
-    console.log(processedData)
+    //log(processedData)
 
 
 return(processedData)
