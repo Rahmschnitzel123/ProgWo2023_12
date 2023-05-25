@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,16 +5,56 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+<h1 style="margin: 0">
+    Titel
+</h1>
 
-<img id="tg-map" src="./res/map-tg.svg" />
-<div>
-    <canvas class="charts" id="lineChart"></canvas>
-    <canvas class="charts" id="barChart"></canvas>
-    <canvas class="charts" id="doughnutChart"></canvas>
+<img id="tg-map" style="width: 80%; height: 700px;" src='./res/map-tg.svg' >
+<p id="tooltip-map" class="do-not-display"></p>
+
+<div class="charts" style="height: 700px">
+    <h2>Parteistimmen in ganz Thurgau</h2>
+    <select class="left">
+        <!-- Hier kommen dann schon alle Jahre vor-->
+        <option hidden value="default">Jahr</option>
+        <option>2012</option>
+        <option>2008</option>
+    </select>
+    <canvas id="barChart"></canvas>
 </div>
-</body>
+<div class="charts" style="height: 700px">
+    <h2>Stimme nach Parteien in den Gemeinden</h2>
+    <div style="height: 700px; width: 700px">
+        <canvas id="doughnutChart"></canvas>
+    </div>
+</div>
+<div class="charts" style="height: 700px">
+    <h2>
+        Vergleich der Verläufe zweier Parteien
+    </h2>
+    <select class="left">
+        <!-- Hier kommen dann schon alle Jahre vor-->
+        <option hidden value="default">1.Partei</option>
+        <option>SVP</option>
+        <option>FDP</option>
+    </select>
+    <select class="left" style="margin-left: 8%">
+        <!-- Hier kommen dann schon alle Jahre vor-->
+        <option hidden value="default">2.Partei</option>
+        <option>SVP</option>
+        <option>FDP</option>
+    </select>
+    <select class="right">
+        <option hidden value="default">Jahr</option>
+        <!-- Hier kommen dann schon alle Jahre vor-->
+        <option>2012</option>
+        <option>2016</option>
+    </select>
+    <canvas id="lineChart"></canvas>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./node_modules/@iconfu/svg-inject/dist/svg-inject.min.js"></script>
 <script src="scripts/main.js"></script>
+</body>
 </html>
