@@ -1,36 +1,39 @@
-import router from '../../backend/chart_map/chart.routes'
-import router from '../../backend/chart_map/chart.routes'
-import router from '../../backend/chart_year/chart.routes'
-import router from '../../backend/chart_county/chart.routes'
-
-
-async function injectMap() {
-    SVGInject.setOptions({ makeIdsUnique: false });
+async function injectMap(data) {
+    const mapData = data;
+    SVGInject.setOptions({makeIdsUnique: false});
     const elMapTg = document.getElementById('tg-map');
     await SVGInject(elMapTg);
     const elG = document.querySelector('g[id=municipalities]'); // Elternelement 'g' auswählen
     const elPaths = elG.querySelectorAll('path');
-
     for (let i = 0; i < elPaths.length; i++) {
         const elPath = elPaths[i];
 
         elPath.addEventListener('mouseover', (event) => {
+            let correctData = [];
+            for (let i = 0; i < mapData.length; i++) {
+                if (mapData[i].bfs_nr === elPath.id) {
+                    correctData.push(mapData[i].gemeinde_name);
+                    correctData.push(mapData[i].bfs_nr);
+                    correctData.push(mapData[i].votes);
+                }
+            }
             const elTooltip = document.getElementById('tooltip-map');
-            elTooltip.classList.remove('do-not-display');
-            elTooltip.innerHTML = `Die id ist: ${elPath.id}`; // Fügen Sie hier die entsprechenden OGD-Daten hinzu
+            elTooltip.hidden = false;
+            elTooltip.innerHTML = 'Gemeindename: ' + correctData[0] + '<br>'+'Gemeindenummer: ' + correctData[1] + '<br>' + 'Anzahl Stimmen: ' + correctData[2]; // Fügen Sie hier die entsprechenden OGD-Daten hinzu
             elTooltip.style.top = `${event.pageY}px`;
             elTooltip.style.left = `${event.pageX}px`;
         });
 
         elPath.addEventListener('mouseout', () => {
             const elTooltip = document.getElementById('tooltip-map');
-            elTooltip.classList.add('do-not-display');
+            elTooltip.hidden = true;
         });
     }
 }
 
 async function callingFunction() {
-    await injectMap();
+    const getMapData = axios.get('/api/mapData')
+    getMapData.then((response) => (injectMap(response.data)));
 }
 
 callingFunction();
@@ -47,7 +50,6 @@ function bar() {
     let label1 = "Anzahl";
 
 
-    <!-- Maximaler Wert muss angepasst werden -->
     let maxValue = 200000;
     let barData = [123423, 22423, 32454, 23424, 54433, 62687, 74565, 83453, 90010]
     let chartobj = document.getElementById('barChart')
@@ -128,7 +130,6 @@ function doughnut() {
 }
 
 function line() {
-    <!-- Maximaler Wert muss angepasst werden -->
     let maxValue = 100000
     let chartobj = document.getElementById('lineChart')
     let lineChart = new Chart(chartobj, {
@@ -157,6 +158,7 @@ function line() {
             },
         }
     });
+}
 
 
 

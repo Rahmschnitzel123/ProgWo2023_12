@@ -1,6 +1,6 @@
-import { processMapData } from './chart.controller.js'
 import {Router} from "express";
+import {processMapData} from './chart.controller.js'
 
-const router = Router()
-
-export { router };
+const router = Router();
+router.get('/', processMapData);
+export {router};

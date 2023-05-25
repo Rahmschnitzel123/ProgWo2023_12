@@ -3,6 +3,7 @@
 }
 
 #municipalities path{
+    position: relative;
     fill: darkgreen;
     stroke: rgb(204, 204, 0)}
 #municipalities path:hover{

@@ -10,7 +10,7 @@
 </h1>
 
 <img id="tg-map" style="width: 80%; height: 700px;" src='./res/map-tg.svg' >
-<p id="tooltip-map" class="do-not-display"></p>
+<p id="tooltip-map" hidden></p>
 
 <div class="charts" style="height: 700px">
     <h2>Parteistimmen in ganz Thurgau</h2>
@@ -55,6 +55,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./node_modules/@iconfu/svg-inject/dist/svg-inject.min.js"></script>
-<script src="scripts/main.js"></script>
+<script src="./node_modules/axios/dist/axios.min.js"></script>
+<script type="module" src="./scripts/main.js"></script>
 </body>
 </html>

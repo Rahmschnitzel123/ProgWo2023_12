@@ -1,8 +1,9 @@
-import { processMapData } from './chart.model.js';
+import {processMapData as getData} from './chart.model.js';
 
 async function processMapData(request, response) {
-    const datasets = await processMapData();
+    const datasets = await getData();
     response.json(datasets);
 
-    export { processMapData };
 }
+
+export {processMapData};
