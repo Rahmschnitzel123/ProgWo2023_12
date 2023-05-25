@@ -5,10 +5,17 @@ axios.get("https://data.tg.ch/api/v2/catalog/datasets/sk-stat-10/exports/json").
 
 function processCompareData(data){
 
+    let processedData = []
 
+
+
+    return processedData;
 }
 
 // DATA_FORMAT
 /*
-
+year:
+parties: {[
+{party: , votes:}
+]}
  */

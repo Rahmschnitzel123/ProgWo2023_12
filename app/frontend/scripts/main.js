@@ -1,3 +1,9 @@
+import router from '../../backend/chart_map/chart.routes'
+import router from '../../backend/chart_map/chart.routes'
+import router from '../../backend/chart_year/chart.routes'
+import router from '../../backend/chart_county/chart.routes'
+
+
 async function injectMap() {
     SVGInject.setOptions({ makeIdsUnique: false });
     const elMapTg = document.getElementById('tg-map');
@@ -39,6 +45,7 @@ function makeCharts() {
 
 function bar() {
     let label1 = "Anzahl";
+
 
     <!-- Maximaler Wert muss angepasst werden -->
     let maxValue = 200000;
@@ -150,8 +157,6 @@ function line() {
             },
         }
     });
-}
-
 
 
 
