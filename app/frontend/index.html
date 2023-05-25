@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,10 +5,12 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-<h1 style="margin: 0px">
+<h1 style="margin: 0">
     Titel
 </h1>
-<img id="tg-map" src="./res/map-tg.svg"/>
+
+<img id="tg-map" style="width: 80%; height: 700px;" src='./res/map-tg.svg' >
+<p id="tooltip-map" class="do-not-display"></p>
 
 <div class="charts" style="height: 700px">
     <h2>Parteistimmen in ganz Thurgau</h2>
@@ -19,7 +20,7 @@
         <option>2012</option>
         <option>2008</option>
     </select>
-    <canvas  id="barChart"></canvas>
+    <canvas id="barChart"></canvas>
 </div>
 <div class="charts" style="height: 700px">
     <h2>Stimme nach Parteien in den Gemeinden</h2>

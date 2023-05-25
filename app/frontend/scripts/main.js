@@ -1,7 +1,33 @@
-SVGInject.setOptions({makeIdsUnique: false});
-const elMapTg = document.getElementById('tg-map');
-SVGInject(elMapTg);
+async function injectMap() {
+    SVGInject.setOptions({ makeIdsUnique: false });
+    const elMapTg = document.getElementById('tg-map');
+    await SVGInject(elMapTg);
+    const elG = document.querySelector('g[id=municipalities]'); // Elternelement 'g' auswählen
+    const elPaths = elG.querySelectorAll('path');
 
+    for (let i = 0; i < elPaths.length; i++) {
+        const elPath = elPaths[i];
+
+        elPath.addEventListener('mouseover', (event) => {
+            const elTooltip = document.getElementById('tooltip-map');
+            elTooltip.classList.remove('do-not-display');
+            elTooltip.innerHTML = `Die id ist: ${elPath.id}`; // Fügen Sie hier die entsprechenden OGD-Daten hinzu
+            elTooltip.style.top = `${event.pageY}px`;
+            elTooltip.style.left = `${event.pageX}px`;
+        });
+
+        elPath.addEventListener('mouseout', () => {
+            const elTooltip = document.getElementById('tooltip-map');
+            elTooltip.classList.add('do-not-display');
+        });
+    }
+}
+
+async function callingFunction() {
+    await injectMap();
+}
+
+callingFunction();
 makeCharts()
 
 function makeCharts() {
@@ -124,52 +150,6 @@ function line() {
             },
         }
     });
-}
-
-// Event-Listener für das mouseover Event
-elMapTg.addEventListener('mouseover', handleMouseOver);
-
-// Event-Listener für das mouseout Event
-elMapTg.addEventListener('mouseout', handleMouseOut);
-
-// Callback-Funktion für das mouseover Event
-function handleMouseOver(event) {
-    // Gemeindedaten aus OGD abrufen (Beispiel)
-    const gemeindeData = getGemeindeData(event.target.id); // Hier musst du deine eigene Logik für den Abruf der OGD-Daten einfügen
-
-    // Tooltip anzeigen und OGD-Daten hinzufügen
-    showTooltip(event.target, gemeindeData);
-}
-
-// Callback-Funktion für das mouseout Event
-function handleMouseOut(event) {
-    // Tooltip ausblenden
-    hideTooltip(event.target);
-}
-
-// Funktion zum Anzeigen des Tooltips und Hinzufügen der OGD-Daten
-function showTooltip(target, gemeindeData) {
-    // Tooltip-Element erstellen (Beispiel)
-    const tooltip = document.createElement('div');
-    tooltip.classList.add('tooltip');
-    tooltip.textContent = gemeindeData; // Hier musst du die entsprechenden OGD-Daten in den Tooltip einfügen
-
-    // Tooltip-Element dem DOM hinzufügen (Beispiel)
-    document.body.appendChild(tooltip);
-
-    // Position des Tooltips festlegen (Beispiel)
-    const rect = target.getBoundingClientRect();
-    tooltip.style.top = rect.top + 'px';
-    tooltip.style.left = rect.left + 'px';
-}
-
-// Funktion zum Ausblenden des Tooltips
-function hideTooltip(target) {
-    // Tooltip-Element aus dem DOM entfernen (Beispiel)
-    const tooltip = document.querySelector('.tooltip');
-    if (tooltip) {
-        tooltip.remove();
-    }
 }
 
 
