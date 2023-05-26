@@ -1,8 +1,9 @@
-import { processCompareData } from './chart.model.js';
+import {processCompareData as getData} from './chart.model.js';
 
 async function processCompareData(request, response) {
-    const datasets = await processCompareData();
+    const datasets = await getData();
     response.json(datasets);
 
-    export { processCompareData };
 }
+
+export {processCompareData};

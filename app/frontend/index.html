@@ -9,21 +9,38 @@
     Ergebnisse Grossratswahlen im Kanton Thurgau 2008-2020
 </h1>
 
-<img id="tg-map" style="width: 80%; height: 700px;" src='./res/map-tg.svg' >
+<img id="tg-map" style="width: 80%; height: 700px;" src='./res/map-tg.svg'>
 <p id="tooltip-map" hidden></p>
 
 <div class="charts" style="height: 700px">
     <h2>Parteistimmen in ganz Thurgau</h2>
-    <select class="left">
-        <!-- Hier kommen dann schon alle Jahre vor-->
-        <option hidden value="default">Jahr</option>
+    <select id="columnYear" class="left"
+    >
+        <option selected>2020</option>
+        <option>2016</option>
         <option>2012</option>
         <option>2008</option>
     </select>
     <canvas id="barChart"></canvas>
 </div>
-<div class="charts" style="height: 700px">
+<div class="charts" style="height: 700px;margin-right: 30% ">
     <h2>Stimme nach Parteien in den Gemeinden</h2>
+    <select id="doughnutYear" class="left"
+    >
+        <option selected>2020</option>
+        <option>2016</option>
+        <option>2012</option>
+        <option>2008</option>
+    </select>
+    <div class="right searchList">
+        <h3>Gemeinden</h3>
+            <input type="text" id="searchInput" placeholder="Gemeinde suchen" style="margin-bottom: 5%">
+        <div class="gemeinden-liste">
+            <ul>
+
+            </ul>
+        </div>
+    </div>
     <div style="height: 700px; width: 700px">
         <canvas id="doughnutChart"></canvas>
     </div>
@@ -32,23 +49,29 @@
     <h2>
         Vergleich der Verläufe zweier Parteien
     </h2>
-    <select class="left">
-        <!-- Hier kommen dann schon alle Jahre vor-->
-        <option hidden value="default">1.Partei</option>
-        <option>SVP</option>
-        <option>FDP</option>
+    <select class="lineChartDrop1">
+        <option disabled>SVP</option>
+        <option selected>FDP</option>
+        <option>CVP</option>
+        <option>SP</option>
+        <option>GP</option>
+        <option>GLP</option>
+        <option>EVP</option>
+        <option>EDU</option>
+        <option>BDP</option>
+        <option>Übrige</option>
     </select>
-    <select class="left" style="margin-left: 8%">
-        <!-- Hier kommen dann schon alle Jahre vor-->
-        <option hidden value="default">2.Partei</option>
-        <option>SVP</option>
-        <option>FDP</option>
-    </select>
-    <select class="right">
-        <option hidden value="default">Jahr</option>
-        <!-- Hier kommen dann schon alle Jahre vor-->
-        <option>2012</option>
-        <option>2016</option>
+    <select class="lineChartDrop2">
+        <option selected>SVP</option>
+        <option disabled>FDP</option>
+        <option>CVP</option>
+        <option>SP</option>
+        <option>GP</option>
+        <option>GLP</option>
+        <option>EVP</option>
+        <option>EDU</option>
+        <option>BDP</option>
+        <option>Übrige</option>
     </select>
     <canvas id="lineChart"></canvas>
 </div>
