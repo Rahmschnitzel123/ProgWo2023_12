@@ -41,18 +41,18 @@
 
 select{
     width: 85px;
+    margin-bottom: 1%;
 }
 
 .charts select.left {
-    position: absolute;
-    left: 5%;
+    left: 2%;
     top: 3%;
 }
 
-.charts select.right {
+.charts .right {
     position: absolute;
-    right: 5%;
-    top: 3%;
+    margin-left: 100%;
+    top: 20%;
 }
 
  .charts {
@@ -68,6 +68,57 @@ select{
 }
 
 h2{
-    margin-bottom: 3%;
+    margin-bottom: 1%;
 }
 
+.gemeinden-liste {
+    height: 300px; /* Höhe der Liste anpassen */
+    overflow: auto; /* Scrollen aktivieren */
+    background-color: #f2f2f2; /* Hintergrundfarbe der Liste */
+    padding: 10px; /* Innenabstand der Liste */
+}
+
+.gemeinden-liste ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gemeinden-liste li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer; /* Zeiger-Cursor für Listenelemente */
+}
+
+.gemeinden-liste li:hover {
+    background-color: #9b83a8; /* Dunklerer Hintergrund beim Hover */
+}
+
+.searchList{
+    text-align: center;
+}
+
+.gemeinden-liste li:last-child {
+    border-bottom: none;
+}
+
+/* Individuell gestaltete Scrollbar */
+.gemeinden-liste::-webkit-scrollbar {
+    width: 8px; /* Breite der Scrollbar */
+}
+
+.gemeinden-liste::-webkit-scrollbar-thumb {
+    background-color: #888; /* Farbe des Scrollbar-Thumb */
+}
+
+.gemeinden-liste::-webkit-scrollbar-track {
+    background-color: #f2f2f2; /* Hintergrundfarbe des Scrollbar-Tracks */
+}
+
+.clicked{
+    background-color: #9b83a8;
+}
+
+.lineChartDrop{
+    align-items: baseline;
+}

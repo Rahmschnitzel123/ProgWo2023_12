@@ -1,8 +1,9 @@
-import { processYearData } from './chart.model.js';
+import { processYearData as getData } from './chart.model.js';
 
 async function processYearData(request, response) {
-    const datasets = await processYearData();
+    const datasets = await getData();
     response.json(datasets);
 
-    export { processYearData };
 }
+
+export {processYearData};
