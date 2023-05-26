@@ -17,12 +17,13 @@ function getData() {
     getYearData.then((response) => bar(response.data)); // Balken-Diagramm-Daten verarbeiten
     getCountyData.then((response) => pie(response.data)); // Torten-Diagramm-Daten verarbeiten
     getCompareData.then((response) => line(response.data)); // Linien-Diagramm-Daten verarbeiten
+
 }
 
 // Funktion zum Einfügen der Karten-Daten
 async function injectMap(data) {
     const mapData = data;
-    SVGInject.setOptions({ makeIdsUnique: false });
+    SVGInject.setOptions({makeIdsUnique: false});
     const elMapTg = document.getElementById('tg-map');
     await SVGInject(elMapTg);
     const elG = document.querySelector('g[id=municipalities]'); // Elternelement 'g' auswählen
@@ -49,6 +50,33 @@ async function injectMap(data) {
         elPath.addEventListener('mouseout', () => {
             const elTooltip = document.getElementById('tooltip-map');
             elTooltip.hidden = true;
+        });
+
+        elPath.addEventListener('click', () => {
+            const getClickedCounty = document.getElementById('tooltip-map').textContent
+            const gemeindenameRegex = /Gemeindename: (.+?)(?=Gemeindenummer:|$)/; // Aktualisierter regulärer Ausdruck
+            const match = getClickedCounty.match(gemeindenameRegex);
+            let gemeindename = "";
+            if (match && match.length > 1) {
+                gemeindename = match[1];
+            }
+            const elGetListName = document.querySelectorAll('.gemeinden-liste ul li');
+            for (let j = 0; j < elGetListName.length; j++) {
+                if (elGetListName[j].textContent === gemeindename) {
+                    elGetListName[j].classList.add('clicked');
+                    const listItemHeight = elGetListName[j].offsetHeight;
+                    const targetScrollPosition = j * listItemHeight;
+                    const listContainer = document.querySelector('.gemeinden-liste');
+                    listContainer.scrollTop = targetScrollPosition;
+                } else {
+                    elGetListName[j].classList.remove('clicked');
+                }
+            }
+
+            updatepie();
+
+            const targetElement = document.querySelector('#pieChart');
+            targetElement.scrollIntoView({ behavior: 'smooth' });
         });
     }
 }
