@@ -1,4 +1,5 @@
-let dataDoughnut = [];
+let datapie = [];
+let dataLine = [];
 
 getData();
 
@@ -10,7 +11,7 @@ function getData() {
 
     getMapData.then((response) => (injectMap(response.data)));
     getYearData.then((response) => bar(response.data));
-    getCountyData.then((response) => doughnut(response.data));
+    getCountyData.then((response) => pie(response.data));
     getCompareData.then((response) => line(response.data));
 }
 
@@ -118,14 +119,14 @@ function updateDataBar(chart, values) {
     chart.update();
 }
 
-async function doughnut(data) {
+async function pie(data) {
     await searchList(data);
     await searchListChange();
-    dataDoughnut = data;
-    const chartValue = await getDataDoughnut(data);
-    let chartobj = document.getElementById('doughnutChart')
-    let doughnutChart = new Chart(chartobj, {
-        type: 'doughnut',
+    datapie = data;
+    const chartValue = await getDatapie(data);
+    let chartobj = document.getElementById('pieChart')
+    let pieChart = new Chart(chartobj, {
+        type: 'pie',
         data: {
             labels: ["SVP", "FDP", "CVP", "SP", "GP", "GLP", "EVP", "EDU", "BDP", "Übrige"],
             datasets: [{
@@ -160,8 +161,8 @@ async function doughnut(data) {
     });
 }
 
-function getDataDoughnut(data) {
-    const getSelectedYear = document.querySelector('#doughnutYear option[selected]')
+function getDatapie(data) {
+    const getSelectedYear = document.querySelector('#pieYear option[selected]')
     const getYear = getSelectedYear.textContent;
     const getClickedCounty = document.querySelector('ul li[class=clicked]');
     const countyValues = [];
@@ -224,31 +225,31 @@ function searchList(data) {
 
 function searchListChange() {
     const elAllListCounty = document.querySelectorAll('ul li');
-    const elListYears = document.querySelector('select[id=doughnutYear]')
+    const elListYears = document.querySelector('select[id=pieYear]')
     for (let i = 0; i < elAllListCounty.length; i++) {
         elAllListCounty[i].addEventListener('click',
             () => {
-                updateDoughnut();
+                updatepie();
             })
     }
     elListYears.addEventListener('change', (event) => {
-        updateDoughnut()
+        updatepie()
     });
 }
 
-function updateDoughnut() {
+function updatepie() {
     const elListCounty = document.querySelector('ul li[class=clicked]').textContent;
-    const selectElement = document.querySelector("#doughnutYear");
+    const selectElement = document.querySelector("#pieYear");
     const selectedYear = selectElement.value;
 
-    const chartInstance = Chart.getChart("doughnutChart");
+    const chartInstance = Chart.getChart("pieChart");
 
     chartInstance.data.datasets[0].data = [];
     chartInstance.update();
     const countyValues = [];
-    for (let i = 0; i < dataDoughnut.length; i++) {
-        if (dataDoughnut[i].year === selectedYear) {
-            const getCountys = dataDoughnut[i].countys;
+    for (let i = 0; i < datapie.length; i++) {
+        if (datapie[i].year === selectedYear) {
+            const getCountys = datapie[i].countys;
             for (let j = 0; j < getCountys.length; j++) {
                 if (getCountys[j].gemeinde_name === elListCounty) {
                     countyValues.push(getCountys[j].svp)
@@ -288,19 +289,19 @@ function addingFilter() {
 }
 
 async function line(data) {
-    console.log(data)
     dropChangeRes();
+    dataLine = data;
     const chartValue = await getDataCompare(data);
-    let maxValue = 100000
+    let maxValue = 500000
     let chartobj = document.getElementById('lineChart')
     let lineChart = new Chart(chartobj, {
         type: 'line',
         data: {
             labels: [2008, 2012, 2016, 2020],
             datasets: [{
-                data: [2323]
+                data: chartValue[0]
             }, {
-                data: [2323]
+                data: chartValue[1]
             }]
         },
         options: {
@@ -321,40 +322,80 @@ async function line(data) {
     });
 }
 
-function dropChangeRes () {
+function dropChangeRes() {
     const drop1 = document.querySelector('.lineChartDrop1');
     const drop2 = document.querySelector('.lineChartDrop2');
 
-    drop1.addEventListener('change', function() {
+    drop1.addEventListener('change', function () {
         drop2.querySelectorAll('option').forEach(option => {
             option.disabled = (option.value === this.value);
+            option.classList.remove('clickedLine')
         });
+        updateLineChart();
     });
 
-    drop2.addEventListener('change', function() {
+    drop2.addEventListener('change', function () {
         drop1.querySelectorAll('option').forEach(option => {
             option.disabled = (option.value === this.value);
+            option.classList.remove('clickedLine')
         });
+        updateLineChart();
     });
 }
 
-function getDataCompare(data){
-    const elGetSelectedParty1 = document.querySelector('.lineChartDrop1 option[selected]');
-    const elGetSelectedParty2 = document.querySelector('.lineChartDrop2 option[selected]');
-    const getNameParty1 = elGetSelectedParty1.textContent
-    const getNameParty2 = elGetSelectedParty2.textContent
-    let party = [];
+function getVotesForSelectedParties(data, selectedParties) {
+    let votesParty1 = [];
+    let votesParty2 = [];
+
     for (let i = 0; i < data.length; i++) {
         const yearData = data[i].parties;
-        console.log(yearData)
-        for (let j = 0; j < yearData; j++) {
-            console.log(getNameParty1 + " " + yearData[j].name);
-            if (yearData[j].name === getNameParty1);
-            console.log("hlajs")
-            party = yearData[j].name;
+
+        for (let j = 0; j < yearData.length; j++) {
+            if (yearData[j].name === selectedParties[0]) {
+                votesParty1.push(yearData[j].votes);
+            }
+
+            if (yearData[j].name === selectedParties[1]) {
+                votesParty2.push(yearData[j].votes);
+            }
         }
     }
-    console.log(party)
+
+    return [votesParty1, votesParty2];
+}
+
+function updateLineChart() {
+    const selectedParties = getSelectedPartiesLineChart();
+    const [votesParty1, votesParty2] = getVotesForSelectedParties(dataLine, selectedParties);
+
+    const chartInstance = Chart.getChart("lineChart");
+    chartInstance.data.datasets[0].data = votesParty1;
+    chartInstance.data.datasets[1].data = votesParty2;
+    chartInstance.update();
+}
+
+function getDataCompare(data) {
+    const selectedParties = getSelectedPartiesLineChart();
+    const [votesParty1, votesParty2] = getVotesForSelectedParties(data, selectedParties);
+    return [votesParty1, votesParty2];
+}
+
+
+function getSelectedPartiesLineChart() {
+    const elGetSelectedParty1 = document.querySelector('.lineChartDrop1 option:checked');
+    const elGetSelectedParty2 = document.querySelector('.lineChartDrop2 option:checked');
+    let getNameParty1 = elGetSelectedParty1.textContent.toLowerCase()
+    let getNameParty2 = elGetSelectedParty2.textContent.toLowerCase()
+    console.log(getNameParty1)
+    console.log(getNameParty2)
+    if (getNameParty1.includes('ü')) {
+        getNameParty1 = getNameParty1.replace(/ü/g, 'ue');
+    }
+    if (getNameParty2.includes('ü')) {
+        getNameParty2 = getNameParty2.replace(/ü/g, 'ue');
+    }
+    const values = [getNameParty1, getNameParty2]
+    return values;
 }
 
 

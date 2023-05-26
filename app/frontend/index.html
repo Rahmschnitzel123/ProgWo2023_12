@@ -25,7 +25,7 @@
 </div>
 <div class="charts" style="height: 700px;margin-right: 30% ">
     <h2>Stimme nach Parteien in den Gemeinden</h2>
-    <select id="doughnutYear" class="left"
+    <select id="pieYear" class="left"
     >
         <option selected>2020</option>
         <option>2016</option>
@@ -34,7 +34,7 @@
     </select>
     <div class="right searchList">
         <h3>Gemeinden</h3>
-            <input type="text" id="searchInput" placeholder="Gemeinde suchen" style="margin-bottom: 5%">
+        <input type="text" id="searchInput" placeholder="Gemeinde suchen" style="margin-bottom: 5%">
         <div class="gemeinden-liste">
             <ul>
 
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div style="height: 700px; width: 700px">
-        <canvas id="doughnutChart"></canvas>
+        <canvas id="pieChart"></canvas>
     </div>
 </div>
 <div class="charts" style="height: 700px">
@@ -50,8 +50,8 @@
         Vergleich der Verläufe zweier Parteien
     </h2>
     <select class="lineChartDrop1">
-        <option disabled>SVP</option>
-        <option selected>FDP</option>
+        <option selected>SVP</option>
+        <option disabled>FDP</option>
         <option>CVP</option>
         <option>SP</option>
         <option>GP</option>
@@ -62,8 +62,8 @@
         <option>Übrige</option>
     </select>
     <select class="lineChartDrop2">
-        <option selected>SVP</option>
-        <option disabled>FDP</option>
+        <option disabled>SVP</option>
+        <option selected>FDP</option>
         <option>CVP</option>
         <option>SP</option>
         <option>GP</option>

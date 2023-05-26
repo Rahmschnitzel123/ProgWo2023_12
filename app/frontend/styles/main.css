@@ -122,3 +122,7 @@ h2{
 .lineChartDrop{
     align-items: baseline;
 }
+
+.clickedLine{
+    background-color: #9b83a8;
+}
