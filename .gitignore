@@ -1,4 +1,4 @@
-.idea/
-app/frontend/node_modules/
-app/node_modules/
-app/backend/node_modules/
+.idea
+app/backend/node_modules
+app/frontend/node_modules
+app/node_modules

@@ -1,30 +1,38 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
-h1{
+
+/* Überschrift */
+h1 {
     text-align: center;
     padding-bottom: 50px;
     padding-top: 15px;
 }
 
-#municipalities path{
+/* Stil für die Karte des Kantons Thurgau */
+#municipalities path {
     position: relative;
     fill: darkgreen;
-    stroke: rgb(204, 204, 0)}
-#municipalities path:hover{
+    stroke: rgb(204, 204, 0);
+}
+
+#municipalities path:hover {
     fill: rgb(17, 173, 14);
 }
-#lakes path{
+
+#lakes path {
     fill: rgb(51, 102, 255);
     stroke: darkblue;
 }
 
+/* Stil für die Diagrammgröße der Karte */
 #tg-map {
     width: 60%;
     padding-left: 10%;
     padding-bottom: 20%;
 }
 
+/* Stil für das Tooltip-Element der Karte */
 #tooltip-map {
     position: absolute;
     padding: 10px;
@@ -34,48 +42,54 @@ h1{
     pointer-events: none;
 }
 
-.charts{
+/* Stil für die Diagrammbereiche */
+.charts {
     padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 10%;
     align-items: center;
     position: relative;
-
-
 }
 
-select{
+/* Stil für die Auswahlliste der Jahre */
+select {
     width: 85px;
     margin-bottom: 1%;
 }
 
+/* Positionierung der Auswahlliste für das Diagramm "Parteistimmen in ganz Thurgau" */
 .charts select.left {
     left: 2%;
     top: 3%;
 }
 
+/* Positionierung des rechten Abschnitts im Diagramm "Stimme nach Parteien in den Gemeinden" */
 .charts .right {
     position: absolute;
     margin-left: 100%;
     top: 20%;
 }
 
- .charts {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
- }
+/* Gemeinsamer Stil für alle Diagrammbereiche */
+.charts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+/* Stil für die Diagramm-Canvas */
 .charts canvas {
     max-width: 100%;
     max-height: 100%;
 }
 
-h2{
+/* Stil für die Überschriften der Diagramme */
+h2 {
     margin-bottom: 1%;
 }
 
+/* Stil für die Liste der Gemeinden */
 .gemeinden-liste {
     height: 300px; /* Höhe der Liste anpassen */
     overflow: auto; /* Scrollen aktivieren */
@@ -99,7 +113,8 @@ h2{
     background-color: #9b83a8; /* Dunklerer Hintergrund beim Hover */
 }
 
-.searchList{
+/* Zentrierter Text für die Suchliste */
+.searchList {
     text-align: center;
 }
 
@@ -107,7 +122,7 @@ h2{
     border-bottom: none;
 }
 
-/* Individuell gestaltete Scrollbar */
+/* Individuell gestaltete Scrollbar für die Gemeindenliste */
 .gemeinden-liste::-webkit-scrollbar {
     width: 8px; /* Breite der Scrollbar */
 }
@@ -120,14 +135,17 @@ h2{
     background-color: #f2f2f2; /* Hintergrundfarbe des Scrollbar-Tracks */
 }
 
-.clicked{
+/* Stil für geklickte Elemente in der Gemeindenliste */
+.clicked {
     background-color: #9b83a8;
 }
 
-.lineChartDrop{
+/* Stil für die Auswahllisten im Diagramm "Vergleich der Verläufe zweier Parteien" */
+.lineChartDrop {
     align-items: baseline;
 }
 
-.clickedLine{
+/* Stil für geklickte Elemente in den Auswahllisten */
+.clickedLine {
     background-color: #9b83a8;
 }
