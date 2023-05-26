@@ -1,6 +1,11 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+h1{
+    text-align: center;
+    padding-bottom: 50px;
+    padding-top: 15px;
+}
 
 #municipalities path{
     position: relative;
